@@ -1,8 +1,12 @@
 import random
 import xlsxwriter
 
+forms = 1000
+estimators = 100
+
+
 def getRandomUser():
-    return personIds[random.randint(0, 99)]
+    return personIds[random.randint(0, forms - 1)]
 
 
 def getAssesmentPersons(personId, count):
@@ -18,19 +22,19 @@ personFile = open("/Users/nikolaj/Downloads/UserPersonID.txt")
 result = []
 personIds = []
 
-for i in range(0, 100):
+for i in range(0, forms):
     personIds.append(personFile.readline().replace("\n", ""))
 
 personFile.close()
 
 for person in personIds:
-    assessmentPersons = getAssesmentPersons(person, 20)
+    assessmentPersons = getAssesmentPersons(person, estimators)
     # result.append([person, person, "1"])
 
     # for i in range(70):
     #     result.append([person, assessmentPersons[i], "2"])
 
-    for i in range(0, 20):
+    for i in range(0, estimators):
         result.append([person, assessmentPersons[i], "3"])
 
 delimiter = 1
